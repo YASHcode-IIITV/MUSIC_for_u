@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Browser Lyrics",
+  "version": "0.4.3",
+  "description": "Show the song playing in another tab with lyrics and controls across browser tabs.",
+  "permissions": ["activeTab", "scripting", "storage", "tabs"],
+  "host_permissions": ["<all_urls>", "https://lrclib.net/*", "https://api.lyrics.ovh/*"],
+  "web_accessible_resources": [{
+    "resources": ["overlay.css"],
+    "matches": ["<all_urls>"]
+  }],
+  "background": { "service_worker": "background.js" },
+  "action": {
+    "default_title": "Toggle floating lyrics"
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["overlay.js"],
+    "css": ["overlay.css"],
+    "run_at": "document_idle"
+  }]
+}
